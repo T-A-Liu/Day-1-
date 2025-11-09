@@ -92,7 +92,7 @@ model = Sequential([
 ])
 
 # Compile the model
-model.compile(optimizer=Adam(learning_rate=0.001),
+model.compile(optimizer=Adam(learning_rate=0.0022),
               loss='binary_crossentropy', # Binary crossentropy for binary classification
               metrics=['accuracy']) # Monitor accuracy
 
@@ -109,10 +109,10 @@ X_train_bow_dense = X_train_bow.todense()
 
 
 history = model.fit(X_train_bow_dense, y_train_numerical, # Use dense input for training
-                    epochs=1, # Number of training epochs
+                    epochs=10, # Number of training epochs
                     shuffle=False,
                     batch_size=16, # Batch size
-                    validation_split=0.28) # Use 30% of training data for validation
+                    validation_split=0.25) # Use 30% of training data for validation
 
 # Evaluate the model on the test set
 # Convert y_test to numerical dtype if it hasn't been already
@@ -193,3 +193,30 @@ report = classification_report(y_test_numerical, y_pred)
 
 print("Classification Report:")
 print(report)
+
+
+#____________________________________
+import matplotlib.pyplot as plt
+
+# --- Plot training & validation loss ---
+plt.figure(figsize=(8, 6))
+plt.plot(history.history['loss'], label='Training Loss', marker='o')
+plt.plot(history.history['val_loss'], label='Validation Loss', marker='o')
+plt.title('Training and Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# --- Plot training & validation accuracy (optional but useful) ---
+plt.figure(figsize=(8, 6))
+plt.plot(history.history['accuracy'], label='Training Accuracy', marker='o')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy', marker='o')
+plt.title('Training and Validation Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.grid(True)
+plt.show()
+
