@@ -198,7 +198,7 @@ print(report)
 #____________________________________
 import matplotlib.pyplot as plt
 
-# --- Plot training & validation loss ---
+# --- Plot training & validation loss
 plt.figure(figsize=(8, 6))
 plt.plot(history.history['loss'], label='Training Loss', marker='o')
 plt.plot(history.history['val_loss'], label='Validation Loss', marker='o')
@@ -209,7 +209,7 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# --- Plot training & validation accuracy (optional but useful) ---
+# --- Plot training & validation accuracy
 plt.figure(figsize=(8, 6))
 plt.plot(history.history['accuracy'], label='Training Accuracy', marker='o')
 plt.plot(history.history['val_accuracy'], label='Validation Accuracy', marker='o')
@@ -219,4 +219,5 @@ plt.ylabel('Accuracy')
 plt.legend()
 plt.grid(True)
 plt.show()
+
 
